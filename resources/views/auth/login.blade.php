@@ -22,13 +22,11 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-        
         @if (session('failed'))
             <div class="alert alert-danger">
                 {{ session('failed') }}
             </div>
         @endif
-
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="/login" method="post">
