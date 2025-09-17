@@ -42,7 +42,7 @@
               </p>
             </a>
           </li>
-          @if(auth()->user()->role == 'Superadmin,Administrator')
+          @if(auth()->user()->role == 'Superadmin' || auth()->user()->role == 'Administrator')
           <li class="nav-item">
             <a href="/users" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
