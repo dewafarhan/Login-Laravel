@@ -8,11 +8,31 @@ use App\Models\User;
 use App\Models\Verification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OtpEmail;
+use Illuminate\Support\Facades\Auth;
 
 class VerificationController extends Controller
 {
     public function index() {
         return view('verification.index');
+    }
+    public function show($unique_id) {
+        $verify = Verification::whereUserId(Auth::user()->id)->whereUniqueId($unique_id)
+        ->whereStatus('Active')->count();
+        if(!$verify) abort(404);
+        return view('verification.show', compact('unique_id'));
+    }
+
+    public function update(Request $request, $unique_id) {
+         $verify = Verification::whereUserId(Auth::user()->id)->whereUniqueId($unique_id)
+        ->whereStatus('Active')->first();
+        if(!$verify) abort(404);
+        if(md5($request->otp) !== $verify->otp) {
+            $verify->update(['status' => 'Invalid']);
+            return back()->with('failed', 'Invalid OTP');
+        }
+        $verify->update(['status' => 'valid']);
+        User::find($verify->user_id)->update(['status' => 'active']);
+        return redirect('/staff');
     }
 
     public function store(Request $request) {

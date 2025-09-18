@@ -16,14 +16,16 @@ Route::get('/register', fn () => view('auth.register'))->name(name: 'register');
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::group(['middleware' => ['auth', 'checkrole:Staff']], function () {
-    Route::get('/verify', [VerificationController::class, 'index']);
+    Route::get('/verify', [VerificationController::class, 'index'])->name('verify');
     Route::post('/verify', [VerificationController::class, 'store']);
+    Route::get('/verify/{unique_id}', [VerificationController::class, 'show']);
+    Route::put('/verify/{unique_id}', [VerificationController::class, 'update']);
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:Staff', 'checkstatus']], function(){
     Route::get('/staff', [DashboardController::class, 'index']);
 });
-Route::group(['middleware' => ['auth', 'checkrole:Administrator,Superadmin']], function(){
+Route::group(['middleware' => ['auth', 'checkrole:Superadmin,Administrator']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
 });
 Route::group(['middleware' => ['auth', 'checkrole:Superadmin,Administrator']], function(){
