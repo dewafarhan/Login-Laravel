@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VerificationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,7 +15,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', fn () => view('auth.register'))->name(name: 'register');
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::group(['middleware' => ['auth', 'checkrole: Staff']], function(){
+Route::group(['middleware' => ['auth', 'checkrole:Staff']], function () {
+    Route::get('/verify', [VerificationController::class, 'index']);
+    Route::post('/verify', [VerificationController::class, 'store']);
+});
+
+Route::group(['middleware' => ['auth', 'checkrole:Staff', 'checkstatus']], function(){
     Route::get('/staff', [DashboardController::class, 'index']);
 });
 Route::group(['middleware' => ['auth', 'checkrole:Administrator,Superadmin']], function(){

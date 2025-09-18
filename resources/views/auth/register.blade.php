@@ -35,7 +35,7 @@
             <small class="text-danger">{{ $message }}</small>
         @enderror
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Name" name="name">
+          <input type="text" class="form-control" placeholder="Name" name="name" value="{{ old('name') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -46,7 +46,7 @@
             <small class="text-danger">{{ $message }}</small>
         @enderror
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
+          <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -69,45 +69,35 @@
         @enderror
         <div class="input-group mb-3">
           <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" id="confirm_password">
-          <div class="input-group-append show-password">
+          <div class="input-group-append show-confirm-password">
             <div class="input-group-text">
-              <span class="fas fa-lock" id="password-lock"></span>
+              <span class="fas fa-lock" id="confirm_password-lock"></span>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" name="remember" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
+          <div class="col-4 offset-8">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
         </div>
       </form>
 
       <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>
         <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+          <i class="fab fa-facebook mr-2"></i> Register in using Facebook
         </a>
         <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+          <i class="fab fa-google-plus mr-2"></i> Register in using Google+
         </a>
       </div>
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        already have an account?
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="/login" class="text-center">Login Here!</a>
       </p>
     </div>
     <!-- /.login-card-body -->
@@ -129,6 +119,15 @@
         }else{
             $('#password').attr('type', 'password');
             $('#password-lock').attr('class', 'fas fa-lock');
+        }
+    })
+    $('.show-confirm-password').on('click', function (){
+        if($('#confirm_password').attr('type') === 'password'){
+            $('#confirm_password').attr('type', 'text')
+            $('#confirm_password-lock').attr('class', 'fas fa-unlock');
+        }else{
+            $('#confirm_password').attr('type', 'password');
+            $('#confirm_password-lock').attr('class', 'fas fa-lock');
         }
     })
 </script>
