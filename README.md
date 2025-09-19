@@ -18,5 +18,18 @@ Fitur yg terdapat dalam sistem login, yaitu:
 2. Registrasi menggunakan verifikasi email.
 3. Terdapat CRUD (create, read, update, delete) user,untuk superadmin.
 
-## Cara instalasi
+### Cara instalasi
 
+## 🔧 Prasyarat
+Sebelum memulai, pastikan sudah terinstall di komputer Anda:
+- **PHP** ^8.2
+- **Composer**
+- **MySQL/MariaDB**
+- **Node.js & NPM**
+
+## 🚀 Instalasi
+
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/username/nama-project.git
+   cd nama-project
