@@ -33,3 +33,29 @@ Sebelum memulai, pastikan sudah terinstall di komputer Anda:
    ```bash
    git clone https://github.com/username/nama-project.git
    cd nama-project
+
+2. **Install dependency Laravel**
+   ```bash
+   composer instal
+
+3. **Copy file environment**
+   ```bash
+   cp .env.example .env
+
+4. **Generate application key**
+   ```bash
+   php artisan key:generate
+
+5. **Jalankan migrasi database**
+   ```bash
+   php artisan migrate --seed
+
+6. **Install dependency frontend**
+   ```bash
+   npm install && npm run dev
+
+7. **Jalankan server lokal**
+   ```bash
+   php artisan serve
+
+
