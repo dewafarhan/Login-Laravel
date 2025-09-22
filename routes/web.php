@@ -39,4 +39,7 @@ Route::group(['middleware' => ['auth', 'checkrole:Superadmin,Administrator']], f
 });
 
 Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
