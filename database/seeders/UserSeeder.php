@@ -13,8 +13,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create(['name' => 'SuperAdmin', 'email' => 'superadmin@gmail.com', 'role' => 'Superadmin', 'status' => 'Active', 'password' => 'superadmin']);
-        User::create(['name' => 'Administrator', 'email' => 'administrator@gmail.com', 'role' => 'Administrator', 'status' => 'Active', 'password' => 'administrator']);
-        User::create(['name' => 'Staff', 'email' => 'staff@gmail.com', 'role' => 'Staff', 'status' => 'Active', 'password' => 'staff']);
+        User::create([
+            'name' => 'SuperAdmin', 
+            'email' => 'superadmin@gmail.com',
+            'role' => 'Superadmin',
+            'status' => 'Active',
+            'password' => 'superadmin'
+        ]);
+
+        User::create([
+            'name' => 'Administrator',
+            'email' => 'administrator@gmail.com',
+            'role' => 'Administrator',
+            'status' => 'Active',
+            'password' => 'administrator'
+        ]);
+
+        User::create([
+            'name' => 'Staff',
+            'email' => 'staff@gmail.com',
+            'role' => 'Staff',
+            'status' => 'Active',
+            'password' => 'staff'
+        ]);
     }
 }
